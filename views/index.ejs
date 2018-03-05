@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+    <title>Stock Picker</title>
+</head>
+<body>
+    <div class="container z-depth-2">
+        <h2 style="text-align:center">Stock Picker</h2>
+        <div class="row">
+            <div class="col s12">
+                <div class="col s4"></div>
+                <div class="col s4">
+                    <form action="/search" method="post">
+                        <div class="input-field">
+                            <input id="ticker" name="ticker" type="text">
+                            <label for="ticker">Stock Ticker</label>
+                        </div>
+                        <input class="btn green darken-2" type="submit" value="check">
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col s1"></div>
+            <div class="col s10">
+                <table class="highlight">
+                    <thead>
+                        <tr>
+                            <th>Stock</th>
+                            <th>Price</th>
+                            <th>Time</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% if(stockObj){ %>
+                            <% for(let stock of stockObj['Stock Quotes']){ %>
+                                <tr>
+                                    <td><%= stock['1. symbol'] %></td>
+                                    <td>$<%= stock['2. price'] %></td>
+                                    <td><%= stock['4. timestamp'] %></td>
+                                </tr>
+                        <% } %>
+                    <% } %>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div> <!-- end container -->
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script type="text/javascript" src="/scripts/js/materialize.min.js"></script>
+</body>
+</html>

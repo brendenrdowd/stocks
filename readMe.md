@@ -3,6 +3,12 @@
 
 Comparitive Stocks is a simple web application which can take in one or multiple stock ticker abbreviations through the form and pass them into an API query which will return a table of data relevant to the stocks entered.
 
+![alt text](./example.jpg "App Example")
+Simple entry field.
+
+![alt text](./outputExample.jpg "Output Example")
+User enters comma seperated tickers, a table is generated to display the output. 
+
 ### How I built it
 
 1.  The first thing I did was create a project folder, created my server.js and index.ejs pages though the command line and installed the node modules I knew I would need. These included express, path, ejs, and body-parser. I used ejs because it uses javascript and runs a templating engine which simplifies and speeds up the process. I could have used angular instead of ejs but I decided not to to make the application light. 

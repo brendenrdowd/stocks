@@ -29,7 +29,7 @@ app.post('/search',function(req,res){
     for(let ticker of data){
         ticker = ticker.trim();
         console.log("looping", ticker);
-        if(ticker.length < 5 && ticker.length > 1){
+        if(ticker.length < 10 && ticker.length > 0){
             console.log("if-ing")
             if(apiStr.length < 1){
                 apiStr = ticker;

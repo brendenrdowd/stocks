@@ -1,5 +1,4 @@
 # Compartive Stocks
-===================
 
 Comparitive Stocks is a simple web application which can take in one or multiple stock ticker abbreviations through the form and pass them into an API query which will return a table of data relevant to the stocks entered.
 

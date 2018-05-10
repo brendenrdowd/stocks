@@ -9,7 +9,6 @@ require('dotenv').config();
 let apiStr = "";
 let stockObj = null;
 const api_key = process.env.API_KEY;
-console.log(process.env.API_KEY); 
 
 app.use(bP.urlencoded());
 app.use(express.static(path.join(__dirname, "./views")));

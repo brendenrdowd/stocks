@@ -32,7 +32,7 @@ app.post('/search',function(req,res){
             continue;
         }
     }
-    request(`https://www.alphavantage.co/query?function=BATCH_STOCK_QUOTES&symbols=${apiStr}&apikey=`, function(error,response,body){
+    request(`https://www.alphavantage.co/query?function=BATCH_STOCK_QUOTES&symbols=${apiStr}&apikey=${api_key}`, function(error,response,body){
         if(!error && response.statusCode == 200){
             stockObj = JSON.parse(body);
             res.redirect('/');

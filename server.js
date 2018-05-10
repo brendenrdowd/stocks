@@ -1,13 +1,15 @@
 const express = require('express'),
     app = express(),
-    port=8000,
+    port=8001,
     bP = require('body-parser'),
     http = require('http'),
     request = require('request'),
     path=require('path');
-let apiStr;
-let stockObj;
-const api_key = process.env.apikey;
+require('dotenv').config();
+let apiStr = "";
+let stockObj = null;
+const api_key = process.env.API_KEY;
+console.log(process.env.API_KEY); 
 
 app.use(bP.urlencoded());
 app.use(express.static(path.join(__dirname, "./views")));
@@ -21,7 +23,7 @@ app.get('/', function(req,res){
     res.render("index",{'stockObj':stockObj});
 })
 app.post('/search',function(req,res){
-    let data = req.body.ticker;
+    req.body.ticker ? data = req.body.ticker : data = "000"
     data = data.replace(/\+/g, ' ').replace(/,/gi,"").split(" ");
     apiStr = "";
     for(let ticker of data){
@@ -32,7 +34,8 @@ app.post('/search',function(req,res){
             continue;
         }
     }
-    request(`https://www.alphavantage.co/query?function=BATCH_STOCK_QUOTES&symbols=${apiStr}&apikey=${api_key}`, function(error,response,body){
+    let call = `https://www.alphavantage.co/query?function=BATCH_STOCK_QUOTES&symbols=${apiStr}&apikey=${api_key}`
+    request(call, function(error,response,body){
         if(!error && response.statusCode == 200){
             stockObj = JSON.parse(body);
             res.redirect('/');

@@ -7,6 +7,7 @@ const express = require('express'),
     path=require('path');
 let apiStr;
 let stockObj;
+const api_key = process.env.apikey;
 
 app.use(bP.urlencoded());
 app.use(express.static(path.join(__dirname, "./views")));
@@ -26,16 +27,12 @@ app.post('/search',function(req,res){
     for(let ticker of data){
         ticker = ticker.trim();
         if(ticker.length < 10 && ticker.length > 0){
-            if(apiStr.length < 1){
-                apiStr = ticker;
-            }else{
-                apiStr = apiStr + ',' + ticker;
-            }
+            apiStr.length < 1 ? apiStr = ticker : apiStr = apiStr + ',' + ticker;
         }else{
             continue;
         }
     }
-    request(`https://www.alphavantage.co/query?function=BATCH_STOCK_QUOTES&symbols=${apiStr}&apikey=8X3HNXXJSGXLQ8XN`, function(error,response,body){
+    request(`https://www.alphavantage.co/query?function=BATCH_STOCK_QUOTES&symbols=${apiStr}&apikey=`, function(error,response,body){
         if(!error && response.statusCode == 200){
             stockObj = JSON.parse(body);
             res.redirect('/');
